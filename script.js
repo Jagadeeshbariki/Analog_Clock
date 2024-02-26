@@ -7,7 +7,7 @@ function setClock() {
       let ISTTime = new Date(currentUTCTime + ISTOffset);
     
       // Format the IST time as HH:MM:SS
-      let hours = ISTTime.getHours()+1;
+      let hours = ISTTime.getHours();
       let minutes = ISTTime.getMinutes().toString().padStart(2, '0');
       let sec = ISTTime.getSeconds().toString().padStart(2, '0');;
       
