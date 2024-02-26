@@ -1,28 +1,19 @@
 function setClock() {
-    // Function to get current Indian Standard Time (IST)
-    function getCurrentIST() {
-      let date = new Date();
-      let currentUTCTime = date.getTime();
-      let ISTOffset = 5.5 * 60 * 60 * 1000;
-      let ISTTime = new Date(currentUTCTime + ISTOffset);
     
-      // Format the IST time as HH:MM:SS
-      let hours = ISTTime.getHours();
-      let minutes = ISTTime.getMinutes().toString().padStart(2, '0');
-      let sec = ISTTime.getSeconds().toString().padStart(2, '0');;
-      
-      return [hours, minutes, sec];
-    }
-    const timeParts = getCurrentIST();
-    const hours = (timeParts[0]);
-    const minutes = (timeParts[1]);
-    const seconds = (timeParts[2]);
 
   const hourHand = document.querySelector('.hour-hand');
   const minuteHand = document.querySelector('.minute-hand');
   const secondHand = document.querySelector('.second-hand');
 
-    
+  const now = new Date();
+  let hours = now.getHours();
+  const minutes = now.getMinutes();
+  const seconds = now.getSeconds();
+
+  // Convert hours to 12-hour format
+  const ampm = hours >= 12 ? 'PM' : 'AM';
+  hours = hours % 12 || 12; // If hours is 0, set it to 12
+  
 
   const hourDegrees = (hours % 12) * 30 + minutes * 0.5; // Each hour is 30 degrees, each minute is 0.5 degree
   const minuteDegrees = (minutes / 60) * 360; // Each minute is 6 degrees
@@ -32,7 +23,7 @@ function setClock() {
   minuteHand.style.transform = `rotate(${minuteDegrees}deg)`;
   secondHand.style.transform = `rotate(${secondDegrees}deg)`;
 
-  document.getElementById("dTime").innerHTML= `${timeParts.join(":")}`
+  document.getElementById("dTime").innerHTML= `${hours}:${minutes}:${seconds} ${ampm}`
 }
 
 setInterval(setClock, 1000); // Update every second
