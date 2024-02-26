@@ -88,6 +88,10 @@ body>main{
     font-size: 60px;
     font-weight: bold;
     margin: 50px;
+    background-image: url("https://media1.tenor.com/m/m3K5VAgoWS8AAAAC/fire-flames.gif");
+    background-size: contain;
+    background-clip: text;
+    color: transparent;
 }
 
 @media only screen and (max-width: 600px){
